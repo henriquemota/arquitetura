@@ -1,0 +1,12 @@
+services:
+  banco:
+    image: postgres
+    ports:
+      - '5432:5432'
+    # volumes:
+    #   - ./dbdata:/var/lib/postgresql/data
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: senha
+      # POSTGRES_DB: nassau
