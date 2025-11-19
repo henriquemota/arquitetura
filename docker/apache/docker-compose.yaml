@@ -1,0 +1,12 @@
+services:
+  apache:
+    build:
+      context: . # Define o diretório onde o Dockerfile está localizado
+      dockerfile: Dockerfile # Especifica o nome do Dockerfile (opcional se for o nome padrão)
+    container_name: apache_container
+    ports:
+      - '80:80' # Mapeia a porta 8080 do seu host para a porta 80 do container
+    volumes:
+      # Mapeia a pasta local www para o diretório htdocs do Apache no container
+      - ./www/:/var/www/html/
+    restart: always

@@ -1,0 +1,12 @@
+services:
+  jsonserver:
+    build: .
+    container_name: 'jsonserver_container'
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./app/data.json:/app/data.json
+      - ./public:/app/public
+    environment:
+      - NODE_ENV=production
+    restart: always

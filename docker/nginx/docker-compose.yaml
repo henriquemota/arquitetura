@@ -1,0 +1,33 @@
+services:
+  nginx:
+    build: .
+    restart: always
+    container_name: nginx_container
+    volumes:
+      - ./www:/var/www/html
+    ports:
+      - '80:80'
+    networks:
+      - app_network
+    depends_on:
+      - postgres
+    links:
+      - postgres
+
+  postgres:
+    image: postgres:latest
+    restart: always
+    container_name: postgres_container
+    networks:
+      - app_network
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=senha
+
+networks:
+  app_network:
+    driver: bridge
